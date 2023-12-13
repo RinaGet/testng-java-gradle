@@ -1,4 +1,1 @@
-[ {
-  "values" : [ "https://allure-examples.github.io/allure-testng-gradle" ],
-  "name" : "URL"
-} ]
+[{"values":["https://allure-examples.github.io/testng-java-gradle"],"name":"URL"}]
