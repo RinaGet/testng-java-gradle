@@ -43,19 +43,24 @@ configurations {
 
 dependencies {
     agent "org.aspectj:aspectjweaver:$aspectJVersion"
-
     testImplementation "org.testng:testng:7.9.0"
-    
     testImplementation platform("io.qameta.allure:allure-bom:$allureVersion")
-    testImplementation "io.qameta.allure:allure-testng:2.29.0"
-
     testImplementation "org.slf4j:slf4j-simple:2.0.16"
+    testImplementation "io.qameta.allure:allure-testng:$allureVersion"
 }
 
 test {
     ignoreFailures = true
     useTestNG()
     jvmArgs = [ "-javaagent:${configurations.agent.singleFile}" ]
+}
+
+tasks.test {
+    useTestNG()
+    systemProperties = [
+            'allure.results.directory': "$buildDir/allure-results"
+    ]
+    testLogging.showStandardStreams = true
 }
 
 tasks.named('allureReport') {
